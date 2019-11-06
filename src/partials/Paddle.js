@@ -18,9 +18,7 @@ export default class Paddle {
       paddle.setAttributeNS(null, "height", this.height);
       paddle.setAttributeNS(null, "x", this.x);
       paddle.setAttributeNS(null, "y", this.y);
-      paddle.setAttributeNS(null, "fill", 'white');
-    //   <rect fill="#fff" x="10" y="100" width="8" height="56" id="svg_2"/>
-    //   <rect fill="#fff" x="494" y="100" width="8" height="56" id="svg_3"/>
+      paddle.setAttributeNS(null, "fill", PADDLE_COLOR);
       svg.appendChild(paddle);
     }
   }

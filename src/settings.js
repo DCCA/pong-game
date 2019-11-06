@@ -9,9 +9,4 @@ export const BOARD_HEIGHT = "256";
 export const PADDLE_COLOR = "#FFFFFF";
 export const PADDLE_WIDTH = 8;
 export const PADDLE_HEIGHT = 56;
-// PLAYER A
-export const PLAYER_A_X = 10;
-export const PLAYER_A_Y = 100;
-// PLAYER B
-export const PLAYER_B_X = 494;
-export const PLAYER_B_Y = 100;
+export const PADDLE_GAP = 10;
