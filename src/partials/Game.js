@@ -21,7 +21,7 @@ export default class Game {
       this.board = new Board(this.width, this.height);
       this.paddle1 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, PADDLE_GAP, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p1up, KEYS.p1down, PADDLE_SPEED);
       this.paddle2 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, this.width - PADDLE_GAP - PADDLE_WIDTH, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p2up, KEYS.p2down, PADDLE_SPEED);
-      this.ball = new Ball(BALL_RADIUS, this.width, this.height, BALL_SPEED);
+      this.ball = new Ball(BALL_RADIUS, this.width, this.height);
       //   <circle cx="256" cy="128" r="8" fill="#fff"/>
   }
 
