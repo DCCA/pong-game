@@ -26,8 +26,13 @@ export default class Ball {
     wallCollision(){
         const hitTop = (this.y - this.radius <= 0);
         const hitBottom = (this.y + this.radius >= this.boardHeight);
+        const hitRight = (this.x - this.radius <= 0);
+        const hitLeft = (this.x + this.radius >= this.boardWidth);
         if(hitTop || hitBottom){
             this.vy = this.vy * (-1);
+        }
+        if(hitRight || hitLeft){
+            this.vx = this.vx * (-1);
         } 
     }
   
