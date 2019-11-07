@@ -1,14 +1,32 @@
-import { SVG_NS, PADDLE_COLOR} from '../settings';
+import { SVG_NS, PADDLE_COLOR } from '../settings';
 
 export default class Paddle {
-    constructor(width, height, boardHeight, x, y) {
+    constructor(width, height, boardHeight, x, y, upKey, downKey, speed) {
       this.width = width;
       this.height = height;
       this.boardHeight = boardHeight;
       this.x = x;
       this.y = y;
       this.score = 0;
-      this.speed = 10;
+      this.speed = speed;
+
+      document.addEventListener("keydown", event => {
+        switch (event.key) {
+          case upKey:
+            this.moveUp();
+            break;
+          case downKey:
+            this.moveDown();
+            break;
+        }
+      });
+    }
+    // Movint the paddles
+    moveUp(){
+        this.y = Math.max(this.y - this.speed, 0);
+    }
+    moveDown(){
+        this.y = Math.min(this.y + this.speed, this.boardHeight - this.height);
     }
   
     render(svg) {
@@ -19,6 +37,7 @@ export default class Paddle {
       paddle.setAttributeNS(null, "x", this.x);
       paddle.setAttributeNS(null, "y", this.y);
       paddle.setAttributeNS(null, "fill", PADDLE_COLOR);
+
       svg.appendChild(paddle);
     }
   }

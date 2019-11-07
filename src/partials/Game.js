@@ -2,10 +2,15 @@ import {
   SVG_NS,
   PADDLE_HEIGHT,
   PADDLE_WIDTH,
-  PADDLE_GAP
+  PADDLE_GAP,
+  PADDLE_SPEED,
+  BALL_RADIUS,
+  BALL_SPEED,
+  KEYS
 } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
+import Ball from './Ball';
 
 export default class Game {
   constructor(element, width, height) {
@@ -14,8 +19,10 @@ export default class Game {
       this.height = height;
       this.gameElement = document.getElementById(this.element);
       this.board = new Board(this.width, this.height);
-      this.paddle1 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, PADDLE_GAP, (this.height / 2) - PADDLE_HEIGHT / 2);
-      this.paddle2 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, this.width - PADDLE_GAP - PADDLE_WIDTH, (this.height / 2) - PADDLE_HEIGHT / 2);
+      this.paddle1 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, PADDLE_GAP, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p1up, KEYS.p1down, PADDLE_SPEED);
+      this.paddle2 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, this.width - PADDLE_GAP - PADDLE_WIDTH, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p2up, KEYS.p2down, PADDLE_SPEED);
+      this.ball = new Ball(BALL_RADIUS,this.width / 2, this.height / 2, BALL_SPEED);
+      //   <circle cx="256" cy="128" r="8" fill="#fff"/>
   }
 
   render() {
@@ -31,6 +38,7 @@ export default class Game {
       this.board.render(svg);
       this.paddle1.render(svg);
       this.paddle2.render(svg);
+      this.ball.render(svg);
       // More code goes here....
   }
 }
