@@ -1,4 +1,7 @@
 import { SVG_NS, BALL_COLOR } from '../settings';
+import PingSound from '../../public/sounds/tennisball.wav';
+import Point from '../../public/sounds/hooray.wav';
+
 
 export default class Ball {
     constructor(radius, boardWidth, boardHeight, speed) {
@@ -6,6 +9,8 @@ export default class Ball {
       this.boardWidth = boardWidth;
       this.boardHeight = boardHeight;
       this.direction = 1;
+      this.ping = new Audio(PingSound);
+      this.point = new Audio(Point);
       this.speed = speed;
       this.reset();
     }
@@ -33,11 +38,13 @@ export default class Ball {
         }
         if(hitLeft){
             this.direction = 1;
+            this.point.play();
             paddle2.increaseScore();
             this.reset();
         }
         if(hitRight){
             this.direction = -1;
+            this.point.play(); 
             paddle1.increaseScore();
             this.reset();
         }
@@ -56,6 +63,7 @@ export default class Ball {
             checkBottom = (this.y + this.radius <= p1Walls.bottom);
         }    
         if(hitWall && checkTop && checkBottom){
+            this.ping.play();
             this.vx = this.vx * (-1);
         } 
     }

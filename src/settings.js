@@ -15,6 +15,8 @@ export const PADDLE_SPEED = 15;
 export const BALL_RADIUS = 8;
 export const BALL_COLOR = "#FFFFFF";
 export const BALL_SPEED = 10;
+// Score
+export const TEXT_SIZE = 20;
 // KEYS
 export const KEYS = {
     p1up: 'w',

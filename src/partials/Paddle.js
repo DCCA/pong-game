@@ -39,6 +39,9 @@ export default class Paddle {
     increaseScore(){
         this.score = this.score + 1;
     }
+    getScore(){
+        return this.score;
+    }
     setSpeed(speed){
         this.speed = speed;   
     }
