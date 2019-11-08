@@ -20,15 +20,22 @@ export default class Paddle {
             break;
         }
       });
-    }
+    };
     // Movint the paddles
     moveUp(){
         this.y = Math.max(this.y - this.speed, 0);
-    }
+    };
     moveDown(){
         this.y = Math.min(this.y + this.speed, this.boardHeight - this.height);
-    }
-  
+    };
+    getCoordinates(){
+        return{
+            left: this.x,
+            top: this.y,
+            right: this.x + this.width,
+            bottom: this.y + this.height,
+        }
+    };
     render(svg) {
       // Create the SVG
       let paddle = document.createElementNS(SVG_NS, "rect");

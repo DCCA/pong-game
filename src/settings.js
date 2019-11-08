@@ -10,7 +10,7 @@ export const PADDLE_COLOR = "#FFFFFF";
 export const PADDLE_WIDTH = 8;
 export const PADDLE_HEIGHT = 56;
 export const PADDLE_GAP = 10;
-export const PADDLE_SPEED = 4;
+export const PADDLE_SPEED = 15;
 // Ball
 export const BALL_RADIUS = 8;
 export const BALL_COLOR = "#FFFFFF";

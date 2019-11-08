@@ -26,17 +26,40 @@ export default class Ball {
     wallCollision(){
         const hitTop = (this.y - this.radius <= 0);
         const hitBottom = (this.y + this.radius >= this.boardHeight);
-        const hitRight = (this.x - this.radius <= 0);
-        const hitLeft = (this.x + this.radius >= this.boardWidth);
+        const hitLeft = (this.x < 0);
+        const hitRight = (this.x > this.boardWidth);
         if(hitTop || hitBottom){
             this.vy = this.vy * (-1);
         }
-        if(hitRight || hitLeft){
+        if(hitLeft){
+            this.direction = 1;
+            this.reset();
+        }
+        if(hitRight){
+            this.direction = -1
+            this.reset();
+        }
+    }
+    paddleColision(paddle1, paddle2){
+        let hitWall = false, checkTop = false, checkBottom = false;
+        if(this.direction === 1){
+            const p2Walls = paddle2.getCoordinates();
+            hitWall = (this.x + this.radius >= p2Walls.left);
+            checkTop =  (this.y - this.radius >= p2Walls.top);
+            checkBottom = (this.y + this.radius <= p2Walls.bottom);
+        }   else {
+            const p1Walls = paddle1.getCoordinates();
+            hitWall = (this.x - this.radius <= p1Walls.right);
+            checkTop =  (this.y - this.radius >= p1Walls.top);
+            checkBottom = (this.y + this.radius <= p1Walls.bottom);
+        }    
+        if(hitWall && checkTop && checkBottom){
             this.vx = this.vx * (-1);
+            this.direction = this.direction * (-1);
         } 
     }
   
-    render(svg) {
+    render(svg, paddle1, paddle2) {
       // Create the SVG
       let ball = document.createElementNS(SVG_NS, "circle");
       ball.setAttributeNS(null, "r", this.radius);
@@ -48,5 +71,6 @@ export default class Ball {
 
       this.ballMove();
       this.wallCollision();
-    }
+      this.paddleColision(paddle1, paddle2);
+    };
   }
