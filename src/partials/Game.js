@@ -22,10 +22,22 @@ export default class Game {
       this.paddle1 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, PADDLE_GAP, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p1up, KEYS.p1down, PADDLE_SPEED);
       this.paddle2 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, this.width - PADDLE_GAP - PADDLE_WIDTH, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p2up, KEYS.p2down, PADDLE_SPEED);
       this.ball = new Ball(BALL_RADIUS, this.width, this.height);
-      //   <circle cx="256" cy="128" r="8" fill="#fff"/>
+      this.paused = false;
+      document.addEventListener("keydown", event => {
+        if(event.key === KEYS.paused){
+          this.paddle1.setSpeed(PADDLE_SPEED);
+          this.paddle2.setSpeed(PADDLE_SPEED);
+          this.paused = !(this.paused);
+        }
+      });
   }
 
   render() {
+    if(this.paused){
+      this.paddle1.setSpeed(0);
+      this.paddle2.setSpeed(0);
+      return;
+    }
       // Reset the SVG
       this.gameElement.innerHTML = '';
       // Create the SVG

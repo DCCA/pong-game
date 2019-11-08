@@ -21,5 +21,5 @@ export const KEYS = {
     p1down: 's', 
     p2up: 'ArrowUp',        
     p2down: 'ArrowDown',   
-    spaceBar: ' ', 
+    paused: ' ', 
   }
