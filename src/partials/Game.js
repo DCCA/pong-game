@@ -7,6 +7,7 @@ import {
   BALL_RADIUS,
   BALL_SPEED,
   TEXT_SIZE,
+  MAX_POINT,
   KEYS
 } from '../settings';
 import Board from './Board';
@@ -25,8 +26,8 @@ export default class Game {
       this.paddle2 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, this.width - PADDLE_GAP - PADDLE_WIDTH, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p2up, KEYS.p2down, PADDLE_SPEED);
       this.ball = new Ball(BALL_RADIUS, this.width, this.height, BALL_SPEED);
       this.paused = false;
-      this.score1 = new Score(this.width / 2 - 50 , 30 , TEXT_SIZE);
-      this.score2 = new Score(this.width / 2 + 50 , 30 , TEXT_SIZE)
+      this.score1 = new Score(this.width / 2 - 100 , 50 , TEXT_SIZE);
+      this.score2 = new Score(this.width / 2 + 60, 50 , TEXT_SIZE)
       document.addEventListener("keydown", event => {
         if(event.key === KEYS.paused){
           this.paddle1.setSpeed(PADDLE_SPEED);
@@ -35,7 +36,29 @@ export default class Game {
         }
       });
   }
-
+  creatWinTex(svg, player){ 
+      let winText = document.createElementNS(SVG_NS, "text");
+      winText.setAttributeNS(null, "font-size", 50);
+      winText.setAttributeNS(null, "x", 20);
+      winText.setAttributeNS(null, "y", 100);
+      winText.setAttributeNS(null, "fill", 'white'); 
+      winText.textContent = 'WIN GAME ' + player + ' !';
+      svg.appendChild(winText);
+  }
+  gameWin(svg){
+    if(this.paddle1.getScore() > MAX_POINT){
+      this.creatWinTex(svg, 'P1');
+      this.paddle1.resetScore();
+      this.paddle2.resetScore();
+      this.paused = true;
+    }
+    if(this.paddle2.getScore() > MAX_POINT){
+      this.creatWinTex(svg, 'P2');
+      this.paddle1.resetScore();
+      this.paddle2.resetScore();
+      this.paused = true;
+    }
+  }
   render() {
     if(this.paused){
       this.paddle1.setSpeed(0);
@@ -52,11 +75,12 @@ export default class Game {
       this.gameElement.appendChild(svg);
       // Render elements
       this.board.render(svg);
-      this.score1.render(svg, this.paddle1.getScore());
-      this.score2.render(svg, this.paddle2.getScore());
       this.paddle1.render(svg);
       this.paddle2.render(svg);
+      this.score1.render(svg, this.paddle1.getScore());
+      this.score2.render(svg, this.paddle2.getScore());
       this.ball.render(svg, this.paddle1, this.paddle2);
       // More code goes here....
+      this.gameWin(svg);
   }
 }

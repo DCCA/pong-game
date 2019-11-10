@@ -6,6 +6,7 @@ export default class Score{
         this.y = y;
         this.size = size;
     }
+
     render(svg, score){
         let scoreText = document.createElementNS(SVG_NS, "text");
         scoreText.setAttributeNS(null, "font-size", this.size);

@@ -39,13 +39,17 @@ export default class Paddle {
     increaseScore(){
         this.score = this.score + 1;
     }
+    resetScore(){
+        this.score = 0;
+    }
     getScore(){
         return this.score;
     }
     setSpeed(speed){
         this.speed = speed;   
     }
-    render(svg) {
+
+    render(svg, scoreOponent) {
       // Create the SVG
       let paddle = document.createElementNS(SVG_NS, "rect");
       paddle.setAttributeNS(null, "width", this.width);
