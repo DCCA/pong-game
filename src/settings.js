@@ -14,10 +14,10 @@ export const PADDLE_SPEED = 15;
 // Ball
 export const BALL_RADIUS = 8;
 export const BALL_COLOR = "#FFFFFF";
-export const BALL_SPEED = 10;
+export const BALL_SPEED = 1;
 // Score
 export const TEXT_SIZE = 60;
-export const MAX_POINT = 1;
+export const MAX_POINT = 5;
 // KEYS
 export const KEYS = {
     p1up: 'w',

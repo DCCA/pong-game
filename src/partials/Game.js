@@ -25,6 +25,7 @@ export default class Game {
       this.paddle1 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, PADDLE_GAP, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p1up, KEYS.p1down, PADDLE_SPEED);
       this.paddle2 = new Paddle(PADDLE_WIDTH, PADDLE_HEIGHT, this.height, this.width - PADDLE_GAP - PADDLE_WIDTH, (this.height / 2) - PADDLE_HEIGHT / 2, KEYS.p2up, KEYS.p2down, PADDLE_SPEED);
       this.ball = new Ball(BALL_RADIUS, this.width, this.height, BALL_SPEED);
+      this.ball2 = new Ball(BALL_RADIUS, this.width, this.height, BALL_SPEED);
       this.paused = false;
       this.score1 = new Score(this.width / 2 - 100 , 50 , TEXT_SIZE);
       this.score2 = new Score(this.width / 2 + 60, 50 , TEXT_SIZE)
@@ -39,7 +40,7 @@ export default class Game {
   creatWinTex(svg, player){ 
       let winText = document.createElementNS(SVG_NS, "text");
       winText.setAttributeNS(null, "font-size", 50);
-      winText.setAttributeNS(null, "x", 20);
+      winText.setAttributeNS(null, "x", 40);
       winText.setAttributeNS(null, "y", 100);
       winText.setAttributeNS(null, "fill", 'white'); 
       winText.textContent = 'WIN GAME ' + player + ' !';
@@ -47,16 +48,16 @@ export default class Game {
   }
   gameWin(svg){
     if(this.paddle1.getScore() > MAX_POINT){
+      this.paused = true;
+      this.paddle1.resetScore();
+      this.paddle2.resetScore();
       this.creatWinTex(svg, 'P1');
-      this.paddle1.resetScore();
-      this.paddle2.resetScore();
-      this.paused = true;
     }
-    if(this.paddle2.getScore() > MAX_POINT){
-      this.creatWinTex(svg, 'P2');
+    if(this.paddle2.getScore() > MAX_POINT){ 
       this.paddle1.resetScore();
       this.paddle2.resetScore();
       this.paused = true;
+      this.creatWinTex(svg, 'P2');
     }
   }
   render() {
@@ -80,6 +81,9 @@ export default class Game {
       this.score1.render(svg, this.paddle1.getScore());
       this.score2.render(svg, this.paddle2.getScore());
       this.ball.render(svg, this.paddle1, this.paddle2);
+      if(this.paddle1.score > 2 || this.paddle2.score > 2){
+        this.ball2.render(svg, this.paddle1, this.paddle2);
+      }
       // More code goes here....
       this.gameWin(svg);
   }

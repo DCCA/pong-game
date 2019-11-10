@@ -49,7 +49,7 @@ export default class Paddle {
         this.speed = speed;   
     }
 
-    render(svg, scoreOponent) {
+    render(svg) {
       // Create the SVG
       let paddle = document.createElementNS(SVG_NS, "rect");
       paddle.setAttributeNS(null, "width", this.width);

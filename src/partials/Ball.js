@@ -11,7 +11,7 @@ export default class Ball {
       this.direction = 1;
       this.ping = new Audio(PingSound);
       this.point = new Audio(Point);
-      this.speed = speed;
+      this.speed = 0.2;
       this.reset();
     }
     ballMove(){
@@ -64,6 +64,11 @@ export default class Ball {
         }    
         if(hitWall && checkTop && checkBottom){
             this.ping.play();
+            if(this.vx > 0){
+                this.vx = this.vx + this.speed;
+            } else {
+                this.vx = this.vx - this.speed;
+            }
             this.vx = this.vx * (-1);
         } 
     }
