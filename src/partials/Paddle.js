@@ -1,7 +1,7 @@
 import { SVG_NS, PADDLE_COLOR } from '../settings';
 
 export default class Paddle {
-    constructor(width, height, boardHeight, x, y, upKey, downKey, speed) {
+    constructor(width, height, boardHeight, x, y, upKey, downKey, speed, shootKey, shoot) {
       this.width = width;
       this.height = height;
       this.boardHeight = boardHeight;
@@ -9,6 +9,7 @@ export default class Paddle {
       this.y = y;
       this.score = 0;
       this.speed = speed;
+      this.shoot = false;
 
       document.addEventListener("keydown", event => {
         switch (event.key) {
@@ -20,8 +21,14 @@ export default class Paddle {
             break;
         }
       });
+
+      document.addEventListener("keydown", event => {
+        if(event.key === shootKey){
+            this.shoot = true;
+        }
+      });
     };
-    // Movint the paddles
+    // Moving the paddles
     moveUp(){
         this.y = Math.max(this.y - this.speed, 0);
     };

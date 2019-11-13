@@ -18,7 +18,6 @@ export default class Ball {
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
     }
-
     reset(){
         this.x = this.boardWidth/2;
         this.y = this.boardHeight/2;
@@ -31,8 +30,8 @@ export default class Ball {
     wallCollision(paddle1, paddle2){
         const hitTop = (this.y - this.radius <= 0);
         const hitBottom = (this.y + this.radius >= this.boardHeight);
-        const hitLeft = (this.x < 0);
-        const hitRight = (this.x > this.boardWidth);
+        const hitLeft = (this.x  - this.radius < 0);
+        const hitRight = (this.x  + this.radius > this.boardWidth);
         if(hitTop || hitBottom){
             this.vy = this.vy * (-1);
         }
@@ -66,10 +65,8 @@ export default class Ball {
             this.ping.play();
             if(this.vx > 0){
                 this.vx = this.vx + this.speed;
-                console.log(this.vx);
             } else {
                 this.vx = this.vx - this.speed;
-                console.log(this.vx);
             }
             this.vx = this.vx * (-1);
         } 

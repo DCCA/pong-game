@@ -17,12 +17,18 @@ export const BALL_COLOR = "#F20505";
 export const BALL_SPEED = 1;
 // Score
 export const TEXT_SIZE = 60;
-export const MAX_POINT = 5;
+export const MAX_POINT = 10;
+// Shoot
+export const SHOOT_WIDTH = 20;
+export const SHOOT_HEIGHT = 4;
+export const SHOOT_COLOR = "#F20505";
 // KEYS
 export const KEYS = {
     p1up: 'w',
-    p1down: 's', 
+    p1down: 's',
+    p1shoot: 'd', 
     p2up: 'ArrowUp',        
-    p2down: 'ArrowDown',   
+    p2down: 'ArrowDown',  
+    p2shoot: 'ArrowLeft', 
     paused: ' ', 
   }
