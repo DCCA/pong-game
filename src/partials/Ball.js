@@ -11,7 +11,7 @@ export default class Ball {
       this.direction = 1;
       this.ping = new Audio(PingSound);
       this.point = new Audio(Point);
-      this.speed = 0.4;
+      this.speed = speed;
       this.reset();
     }
     ballMove(){

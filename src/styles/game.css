@@ -77,10 +77,18 @@ body {
   height: 100vh;
   justify-content: center;
   width: 100%;
+  /* background-color: #03A696; */
 }
 
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem; 
+  margin-bottom: 0.1rem; 
   text-align: center;
+  color: #27A4F2;
+}
+
+.player{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
