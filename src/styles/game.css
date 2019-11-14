@@ -80,15 +80,40 @@ body {
   /* background-color: #03A696; */
 }
 
-h1 {
+h1{
   font-size: 2.5rem;
-  margin-bottom: 0.1rem; 
+  margin-bottom: 0.4rem; 
   text-align: center;
   color: #27A4F2;
+}
+
+.rules h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.4rem; 
+  text-align: center;
+  color: #27A4F2;
+}
+
+h4{
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+p{
+  font-size: 0.5rem;
 }
 
 .player{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.rules{
+  margin: 0.4rem 0; 
+  text-align: center;
+}
+
+.rules p{
+  font-size: 0.6rem;
 }

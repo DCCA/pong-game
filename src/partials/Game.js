@@ -7,6 +7,7 @@ import {
   BALL_RADIUS,
   BALL_SPEED,
   TEXT_SIZE,
+  POINTS_TBALLS,
   KEYS
 } from '../settings';
 import Board from './Board';
@@ -58,7 +59,7 @@ export default class Game {
       this.paddle2.render(svg);
       this.ball.render(svg, this.paddle1, this.paddle2);
       // Set 2 balls in the game
-      if(this.paddle1.score > 2 || this.paddle2.score > 2){
+      if(this.paddle1.score > POINTS_TBALLS || this.paddle2.score > POINTS_TBALLS){
           this.ball2.render(svg, this.paddle1, this.paddle2);
       }
       this.score.render(svg, this.paddle1, this.paddle2);

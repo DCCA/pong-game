@@ -15,6 +15,8 @@ export const PADDLE_SPEED = 15;
 export const BALL_RADIUS = 8;
 export const BALL_COLOR = "#F20505";
 export const BALL_SPEED = 1;
+// 2 BALLS
+export const POINTS_TBALLS = 5;
 // Score
 export const TEXT_SIZE = 60;
 export const MAX_POINT = 8;
