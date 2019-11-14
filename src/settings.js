@@ -17,7 +17,7 @@ export const BALL_COLOR = "#F20505";
 export const BALL_SPEED = 1;
 // Score
 export const TEXT_SIZE = 60;
-export const MAX_POINT = 10;
+export const MAX_POINT = 8;
 // Shoot
 export const SHOOT_WIDTH = 20;
 export const SHOOT_HEIGHT = 4;

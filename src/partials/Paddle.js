@@ -25,6 +25,7 @@ export default class Paddle {
       document.addEventListener("keydown", event => {
         if(event.key === shootKey){
             this.shoot = true;
+            this.shootY = this.y;
         }
       });
     };

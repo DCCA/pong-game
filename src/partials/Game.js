@@ -7,7 +7,6 @@ import {
   BALL_RADIUS,
   BALL_SPEED,
   TEXT_SIZE,
-  SHOOT_HEIGHT,
   KEYS
 } from '../settings';
 import Board from './Board';
@@ -64,15 +63,15 @@ export default class Game {
       }
       this.score.render(svg, this.paddle1, this.paddle2);
       // Shooting
-      console.log(this.paddle1.shoot);
       if(this.paddle1.shoot === true){
-        this.shoot1.render(svg, this.paddle1.y + PADDLE_HEIGHT / 2, this.paddle1, this.paddle2);
+        this.shoot1.render(svg, this.paddle1.shootY + PADDLE_HEIGHT / 2, this.paddle1, this.paddle2);
         this.shoot1.shootHit(this.paddle1, this.paddle2);
+        this.shoot1.shootMiss(this.paddle1, this.paddle2);
       }
-      console.log(this.paddle2.shoot);
       if(this.paddle2.shoot === true){
-        this.shoot2.render(svg, this.paddle2.y + PADDLE_HEIGHT / 2, this.paddle1, this.paddle2);
+        this.shoot2.render(svg, this.paddle2.shootY + PADDLE_HEIGHT / 2, this.paddle1, this.paddle2);
         this.shoot2.shootHit(this.paddle1, this.paddle2);
+        this.shoot2.shootMiss(this.paddle1, this.paddle2);
       }
       // Set game win
       if(this.score.gameWin(svg, this.paddle1, this.paddle2)){

@@ -1,4 +1,4 @@
-import { SVG_NS, SHOOT_HEIGHT, SHOOT_WIDTH, SHOOT_COLOR , BOARD_WIDTH} from '../settings';
+ import { SVG_NS, SHOOT_HEIGHT, SHOOT_WIDTH, SHOOT_COLOR , BOARD_WIDTH} from '../settings';
 
 export default class Shoot {
     constructor(x, direction, paddle1, paddle2){
@@ -15,9 +15,11 @@ export default class Shoot {
         const hitRight = (this.x - SHOOT_HEIGHT > BOARD_WIDTH);
         if(hitRight){
             paddle1.shoot = false;
+            this.x = paddle1.x; 
         }
         if(hitLeft){
             paddle2.shoot = false;
+            this.x = paddle2.x;
         }
     }
     shootHit(paddle1, paddle2){
@@ -47,7 +49,7 @@ export default class Shoot {
             }
         }
     }
-    render(svg, y, paddle1, paddle2){
+    render(svg, y){
         let shoot = document.createElementNS(SVG_NS, "rect");
         shoot.setAttributeNS(null, "width", this.width);
         shoot.setAttributeNS(null, "height", this.height);
@@ -58,8 +60,5 @@ export default class Shoot {
         
         svg.appendChild(shoot);
         this.shootMove();
-        this.shootMiss(paddle1, paddle2);
-        // this.shootMiss(paddle1, paddle2);
     }
-
 }
